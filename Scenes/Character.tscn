@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/snowman.glb" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Character.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape" id=1]
+
+[sub_resource type="CylinderShape" id=2]
+
+[node name="Character" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Head" type="Spatial" parent="." index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0431656 )
+
+[node name="Camera" type="Camera" parent="Head" index="0"]
+transform = Transform( -1, 0, -8.74228e-08, -3.41091e-08, 0.920746, 0.390163, 8.04942e-08, 0.390163, -0.920746, 0, 2.98497, -2.89353 )
+fov = 64.2616
+
+[node name="CollisionShape" type="CollisionShape" parent="." index="2"]
+transform = Transform( 0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, 0, 0.350935, 0 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="." index="3"]
+transform = Transform( 0.25, 0, 0, 0, 0.1, 0, 0, 0, 0.25, 0, 0.105685, 0 )
+shape = SubResource( 2 )

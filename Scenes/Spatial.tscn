@@ -1,0 +1,425 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Scripts/World.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/SnowFloor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/GrassFloor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/FourTrees.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/GreenHill.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Character.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/RockHill.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Bridge.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/river.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/SnowFourTree.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/snowtree.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/snowman.glb" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/crystal.tscn" type="PackedScene" id=13]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 100, 100 )
+
+[sub_resource type="ConvexPolygonShape" id=2]
+points = PoolVector3Array( 50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, -50 )
+
+[sub_resource type="PlaneMesh" id=3]
+
+[sub_resource type="ConcavePolygonShape" id=4]
+data = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1 )
+
+[sub_resource type="BoxShape" id=5]
+
+[node name="World" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Ground" type="StaticBody" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="Ground"]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Ground"]
+shape = SubResource( 2 )
+
+[node name="Floor" type="Spatial" parent="."]
+
+[node name="SnowFloor" parent="Floor" instance=ExtResource( 2 )]
+transform = Transform( 25, 0, 0, 0, 1, 0, 0, 0, 50, -29, 0, 0 )
+collision_layer = 11273
+collision_mask = 11273
+mode = 1
+sleeping = true
+
+[node name="GrassFloor" parent="Floor" instance=ExtResource( 3 )]
+transform = Transform( 25, 0, 0, 0, 1, 0, 0, 0, 50, 29, 0, 0 )
+collision_layer = 11273
+collision_mask = 11273
+mode = 1
+sleeping = true
+
+[node name="WoodTrees" type="Spatial" parent="."]
+editor/display_folded = true
+
+[node name="FourTrees3" parent="WoodTrees" instance=ExtResource( 4 )]
+transform = Transform( 8.66025, 0, -5, 0, 10, 0, 5, 0, 8.66025, 14, -1, 45 )
+
+[node name="FourTrees4" parent="WoodTrees" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 24, -1, 45 )
+
+[node name="FourTrees5" parent="WoodTrees" instance=ExtResource( 4 )]
+transform = Transform( 0.871558, 0, 9.96195, 0, 10, 0, -9.96195, 0, 0.871558, 34, -1, 45 )
+
+[node name="GreenHills" type="Spatial" parent="."]
+editor/display_folded = true
+
+[node name="GreenHill" parent="GreenHills" instance=ExtResource( 5 )]
+transform = Transform( 1.74312, 0, -9.96195, 0, 20, 0, 19.9239, 0, 0.871558, 48, -3, 33 )
+
+[node name="GreenHill7" parent="GreenHills" instance=ExtResource( 5 )]
+transform = Transform( -39.8478, 0, -3.48624, 0, 35, 0, 3.48624, 0, -39.8478, 31, -6, 81 )
+
+[node name="GreenHill8" parent="GreenHills" instance=ExtResource( 5 )]
+transform = Transform( 37.5877, 0, -13.6808, 0, 35, 0, 13.6808, 0, 37.5877, 43, -6, -71 )
+
+[node name="GreenHill6" parent="GreenHills" instance=ExtResource( 5 )]
+transform = Transform( -15.3209, 0, -6.42788, 0, 20, 0, 12.8558, 0, -7.66044, 53, -3, 48 )
+
+[node name="GreenHill2" parent="GreenHills" instance=ExtResource( 5 )]
+transform = Transform( 6.8404, 0, -9.39693, 0, 20, 0, 18.7939, 0, 3.4202, 55, -3, -41 )
+
+[node name="GreenHill3" parent="GreenHills" instance=ExtResource( 5 )]
+transform = Transform( -14.4889, 0, -2.58819, 0, 15, 0, 3.88229, 0, -9.65926, 51, -3, 19 )
+
+[node name="GreenHill4" parent="GreenHills" instance=ExtResource( 5 )]
+transform = Transform( -15, 0, -17.3205, 0, 15, 0, 25.9808, 0, -10, 62, -3, 1 )
+
+[node name="GreenHill5" parent="GreenHills" instance=ExtResource( 5 )]
+transform = Transform( -7.5, 0, -8.66026, 0, 15, 0, 12.9904, 0, -5, 53, -3, -19 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.77286, -0.0746311, 0.630173, -0.52878, 0.473275, 0.704559, -0.350827, -0.877748, 0.326312, 27, 69, 52 )
+light_color = Color( 0.988235, 1, 0.807843, 1 )
+shadow_enabled = true
+
+[node name="Character" parent="." instance=ExtResource( 6 )]
+transform = Transform( -3, 0, -4.52987e-07, 0, 3, 0, 4.52987e-07, 0, -3, 20, 1.11378, 34 )
+
+[node name="invinsible wall" type="RigidBody" parent="."]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.19009, 0, 71 )
+mode = 1
+sleeping = true
+
+[node name="MeshInstance" type="MeshInstance" parent="invinsible wall"]
+transform = Transform( -4.37114e-06, -10, 0, -4.37114e-06, 1.91069e-14, -20, 100, -4.37114e-07, -8.74228e-07, 0, 0, 0 )
+visible = false
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="invinsible wall"]
+transform = Transform( -4.37114e-06, -10, 0, -4.37114e-06, 1.91069e-14, -20, 100, -4.37114e-07, -8.74228e-07, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="invinsible wall2" type="RigidBody" parent="."]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.03905, 0, -137 )
+mode = 1
+sleeping = true
+
+[node name="MeshInstance" type="MeshInstance" parent="invinsible wall2"]
+transform = Transform( -4.37114e-06, -10, 0, -4.37114e-06, 1.91069e-14, -20, 100, -4.37114e-07, -8.74228e-07, 0, 0, 0 )
+visible = false
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="invinsible wall2"]
+transform = Transform( -4.37114e-06, -10, 0, -4.37114e-06, 1.91069e-14, -20, 100, -4.37114e-07, -8.74228e-07, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="SnowHills" type="Spatial" parent="."]
+
+[node name="RockHill" parent="SnowHills" instance=ExtResource( 7 )]
+transform = Transform( 3.47296, 0, 14.7721, 0, 15, 0, -19.6962, 0, 2.60472, -51, -2, 36 )
+
+[node name="RockHill4" parent="SnowHills" instance=ExtResource( 7 )]
+transform = Transform( 14.0954, 0, 5.1303, 0, 10, 0, -5.1303, 0, 14.0954, -51, -2, 14 )
+
+[node name="RockHill5" parent="SnowHills" instance=ExtResource( 7 )]
+transform = Transform( 3.88228, 0, -14.4889, 0, 10, 0, 14.4889, 0, 3.88228, -53, -2, -5 )
+
+[node name="RockHill2" parent="SnowHills" instance=ExtResource( 7 )]
+transform = Transform( 3.47296, 0, 14.7721, 0, 15, 0, -19.6962, 0, 2.60472, -51, -2, -39 )
+
+[node name="RockHill11" parent="SnowHills" instance=ExtResource( 7 )]
+transform = Transform( 3.47296, 0, 14.7721, 0, 15, 0, -19.6962, 0, 2.60472, -38, -2, -65 )
+
+[node name="RockHill6" parent="SnowHills" instance=ExtResource( 7 )]
+transform = Transform( 6.94593, 0, 39.3923, 0, 40, 0, -39.3923, 0, 6.94593, -103, -9, -39 )
+
+[node name="RockHill7" parent="SnowHills" instance=ExtResource( 7 )]
+transform = Transform( -10.3528, 0, 38.637, 0, 45, 0, -38.637, 0, -10.3528, -106, -9, 13 )
+
+[node name="RockHill8" parent="SnowHills" instance=ExtResource( 7 )]
+transform = Transform( -34.641, 0, 20, 0, 35, 0, -20, 0, -34.641, -81, -7, 73 )
+
+[node name="RockHill9" parent="SnowHills" instance=ExtResource( 7 )]
+transform = Transform( -39.8478, 0, -3.48623, 0, 35, 0, 3.48623, 0, -39.8478, -23.0112, -7, 82.8718 )
+
+[node name="RockHill10" parent="SnowHills" instance=ExtResource( 7 )]
+transform = Transform( 22.9431, 0, -32.7661, 0, 35, 0, 32.7661, 0, 22.9431, -42, -7, -71 )
+
+[node name="RockHill3" parent="SnowHills" instance=ExtResource( 7 )]
+transform = Transform( 14.9429, 0, -1.30734, 0, 25, 0, 1.30734, 0, 14.9429, -51, -4, -28 )
+
+[node name="River" type="Spatial" parent="."]
+
+[node name="Bridge" parent="River" instance=ExtResource( 8 )]
+transform = Transform( 8, 0, 0, 0, 10, 0, 0, 0, 10, 0, -1, -33 )
+
+[node name="river" parent="River" instance=ExtResource( 9 )]
+transform = Transform( 8, 0, 0, 0, 10, 0, 0, 0, 80, 0, -1, 12 )
+
+[node name="river2" parent="River" instance=ExtResource( 9 )]
+transform = Transform( 8, 0, 0, 0, 10, 0, 0, 0, 80, 0, -1, -78 )
+
+[node name="snowTrees" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+
+[node name="SnowFourTree" parent="snowTrees" instance=ExtResource( 10 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, -9, 0, 45 )
+
+[node name="SnowFourTree4" parent="snowTrees" instance=ExtResource( 10 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, -9, 0, 11.4956 )
+
+[node name="SnowFourTree5" parent="snowTrees" instance=ExtResource( 10 )]
+transform = Transform( 9.63241, 0, -2.68641, 0, 10, 0, 2.68641, 0, 9.63241, -8.87987, 0, -5.13796 )
+
+[node name="SnowFourTree6" parent="snowTrees" instance=ExtResource( 10 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, -9, 0, -17.3023 )
+
+[node name="SnowFourTree13" parent="snowTrees" instance=ExtResource( 10 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, -13.9558, 0, -28.5062 )
+
+[node name="SnowFourTree14" parent="snowTrees" instance=ExtResource( 10 )]
+transform = Transform( 9.51751, 0, -3.06872, 0, 10, 0, 3.06872, 0, 9.51751, -33.3417, 0, -27.4853 )
+
+[node name="SnowFourTree7" parent="snowTrees" instance=ExtResource( 10 )]
+transform = Transform( 8.29273, 0, 5.58844, 0, 10, 0, -5.58844, 0, 8.29273, -19.7389, 0, -18.5011 )
+
+[node name="SnowFourTree8" parent="snowTrees" instance=ExtResource( 10 )]
+transform = Transform( 9.78991, 0, -2.03903, 0, 10, 0, 2.03903, 0, 9.78991, -25.7322, 0, -4.91174 )
+
+[node name="SnowFourTree9" parent="snowTrees" instance=ExtResource( 10 )]
+transform = Transform( 9.1644, 0, -4.00171, 0, 10, 0, 4.00171, 0, 9.1644, -19.2213, 0, 11.8565 )
+
+[node name="SnowFourTree10" parent="snowTrees" instance=ExtResource( 10 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, -35.1124, 0, 9.48978 )
+
+[node name="SnowFourTree12" parent="snowTrees" instance=ExtResource( 10 )]
+transform = Transform( 9.68521, 0, 2.48932, 0, 10, 0, -2.48932, 0, 9.68521, -36.4644, 0, -15.9208 )
+
+[node name="SnowFourTree11" parent="snowTrees" instance=ExtResource( 10 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, -35.7816, 0, -5.07812 )
+
+[node name="SnowFourTree2" parent="snowTrees" instance=ExtResource( 10 )]
+transform = Transform( 7.66044, 0, -6.42788, 0, 10, 0, 6.42788, 0, 7.66044, -20, 0, 45 )
+
+[node name="SnowFourTree3" parent="snowTrees" instance=ExtResource( 10 )]
+transform = Transform( 9.06308, 0, -4.22618, 0, 10, 0, 4.22618, 0, 9.06308, -34.9147, 0, 46.1704 )
+
+[node name="Scene Root" parent="snowTrees" instance=ExtResource( 11 )]
+transform = Transform( 10, 0, 0, 0, 15, 0, 0, 0, 10, -20, 2, -29 )
+
+[node name="Scene Root2" parent="snowTrees" instance=ExtResource( 11 )]
+transform = Transform( 10, 0, 0, 0, 15, 0, 0, 0, 10, -26, 2, -5 )
+
+[node name="Scene Root3" parent="snowTrees" instance=ExtResource( 11 )]
+transform = Transform( 10, 0, 0, 0, 15, 0, 0, 0, 10, -10, 2, -7 )
+
+[node name="Scene Root4" parent="snowTrees" instance=ExtResource( 11 )]
+transform = Transform( 10, 0, 0, 0, 15, 0, 0, 0, 10, -10, 2, -19 )
+
+[node name="Scene Root5" parent="snowTrees" instance=ExtResource( 11 )]
+transform = Transform( 10, 0, 0, 0, 15, 0, 0, 0, 10, -21, 2, -19 )
+
+[node name="Scene Root6" parent="snowTrees" instance=ExtResource( 11 )]
+transform = Transform( 10, 0, 0, 0, 15, 0, 0, 0, 10, -37, 2, -22 )
+
+[node name="Scene Root7" parent="snowTrees" instance=ExtResource( 11 )]
+transform = Transform( 10, 0, 0, 0, 15, 0, 0, 0, 10, -37, 2, -7 )
+
+[node name="Scene Root8" parent="snowTrees" instance=ExtResource( 11 )]
+transform = Transform( 10, 0, 0, 0, 15, 0, 0, 0, 10, -10, 2, 9 )
+
+[node name="Scene Root9" parent="snowTrees" instance=ExtResource( 11 )]
+transform = Transform( 10, 0, 0, 0, 15, 0, 0, 0, 10, -20, 2, 10 )
+
+[node name="Scene Root10" parent="snowTrees" instance=ExtResource( 11 )]
+transform = Transform( 10, 0, 0, 0, 15, 0, 0, 0, 10, -8, 2, -26 )
+
+[node name="Scene Root11" parent="snowTrees" instance=ExtResource( 11 )]
+transform = Transform( 10, 0, 0, 0, 15, 0, 0, 0, 10, -8, 2, -39 )
+
+[node name="Scene Root12" parent="snowTrees" instance=ExtResource( 11 )]
+transform = Transform( 10, 0, 0, 0, 15, 0, 0, 0, 10, -15, 2, -39 )
+
+[node name="Scene Root13" parent="snowTrees" instance=ExtResource( 11 )]
+transform = Transform( 10, 0, 0, 0, 15, 0, 0, 0, 10, -21, 2, -39 )
+
+[node name="Scene Root14" parent="snowTrees" instance=ExtResource( 11 )]
+transform = Transform( 10, 0, 0, 0, 15, 0, 0, 0, 10, -27, 2, -39 )
+
+[node name="Scene Root15" parent="snowTrees" instance=ExtResource( 11 )]
+transform = Transform( 10, 0, 0, 0, 15, 0, 0, 0, 10, -33, 2, -39 )
+
+[node name="Area" type="Area" parent="."]
+transform = Transform( 1.8, 0, 0, 0, 6, 0, 0, 0, 1.8, -27, 0, 31 )
+
+[node name="mom" parent="Area" instance=ExtResource( 12 )]
+transform = Transform( -3.33333, 0, -5.03319e-07, 0, 1, 0, 5.03319e-07, 0, -3.33333, 0.000561714, 0.18563, -0.000555038 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16667, 0 )
+shape = SubResource( 5 )
+
+[node name="crystals" type="Spatial" parent="."]
+
+[node name="crystal" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 5.52239, 0.374281, 17 )
+
+[node name="crystal12" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 16.6168, -0.00991726, 7.90908 )
+
+[node name="crystal15" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 21.5508, -0.00991726, 7.90908 )
+
+[node name="crystal16" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 26.5813, -0.00991726, 7.90908 )
+
+[node name="crystal17" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 31.5808, -0.00991726, 7.90908 )
+
+[node name="crystal18" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 31.5808, -0.00991726, 3.12593 )
+
+[node name="crystal19" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 31.5808, -0.368623, -1.3852 )
+
+[node name="crystal20" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 31.5808, -0.368623, -6.38156 )
+
+[node name="crystal21" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 36.5252, -0.368623, -6.38156 )
+
+[node name="crystal22" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 36.5252, -0.368623, -16.6855 )
+
+[node name="crystal23" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 36.5252, -0.368623, -21.5034 )
+
+[node name="crystal24" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 36.5252, -0.368623, -26.3367 )
+
+[node name="crystal25" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 31.5665, -0.368623, -26.3367 )
+
+[node name="crystal26" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 26.5097, -0.368623, -26.3367 )
+
+[node name="crystal27" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 29.7724, -0.368623, -37.8981 )
+
+[node name="crystal28" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 24.6776, -0.368623, -37.8981 )
+
+[node name="crystal30" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 15.5921, -0.368623, -37.8981 )
+
+[node name="crystal42" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 10.82, 0.374, -43.1567 )
+
+[node name="crystal43" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 10.82, 0.374, -46.505 )
+
+[node name="crystal41" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 10.5045, -0.368623, -37.8981 )
+
+[node name="crystal31" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 11.5897, -0.368623, -33.1031 )
+
+[node name="crystal32" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 11.5432, -0.368623, -28.364 )
+
+[node name="crystal40" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 16.551, -0.368623, -28.364 )
+
+[node name="crystal33" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 6.76768, -0.368623, -23.3489 )
+
+[node name="crystal34" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 14.6513, -0.368623, -23.3489 )
+
+[node name="crystal35" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 15.7653, -0.368623, -18.3197 )
+
+[node name="crystal36" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 26.2098, -0.368623, -16.6278 )
+
+[node name="crystal39" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 21.0138, -0.368623, -16.6278 )
+
+[node name="crystal37" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 26.6053, -0.368623, -6.40318 )
+
+[node name="crystal44" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 21.5437, -0.368623, -6.40318 )
+
+[node name="crystal45" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 16.2973, -0.368623, -6.40318 )
+
+[node name="crystal46" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 16.2973, -0.368623, -1.64549 )
+
+[node name="crystal47" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 11.1087, -0.368623, -1.64549 )
+
+[node name="crystal48" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 11.1087, -0.368623, -14.7332 )
+
+[node name="crystal38" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 31.393, -0.368623, -16.6228 )
+
+[node name="crystal13" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 6.58532, -0.00991726, 7.90908 )
+
+[node name="crystal14" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 11.5867, -0.00991726, 7.90908 )
+
+[node name="crystal3" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 8.50484, 0.374281, 17 )
+
+[node name="crystal4" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 11.584, 0.374281, 17 )
+
+[node name="crystal5" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 14.647, 0.374281, 17 )
+
+[node name="crystal6" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 17.6362, 0.374281, 17 )
+
+[node name="crystal7" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 20.5483, 0.374281, 17 )
+
+[node name="crystal8" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 23.5457, 0.374281, 17 )
+
+[node name="crystal2" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 26.6116, 0.374281, 17 )
+
+[node name="crystal9" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 29.6201, 0.374281, 17 )
+
+[node name="crystal10" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 32.6329, 0.374281, 17 )
+
+[node name="crystal11" parent="crystals" instance=ExtResource( 13 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 35.6306, 0.374281, 17 )
+[connection signal="body_entered" from="Area" to="Character" method="_on_Area_body_entered"]
